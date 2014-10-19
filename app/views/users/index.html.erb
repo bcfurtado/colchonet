@@ -1,0 +1,29 @@
+<h1>Lista de Usuário</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td></td>
+        <td><%= link_to 'Exibir', user %></td>
+        <td><%= link_to 'Editar', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo usuário', new_user_path %>
