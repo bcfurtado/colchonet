@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
 
+  scope :confirmed, where('confirmed_at IS NOT NULL')
+
 	validates_presence_of :email, :full_name, :location
 	validates_length_of :bio, :minimum => 30, :allow_blank => false
 	validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
@@ -23,6 +25,12 @@ class User < ActiveRecord::Base
 
   def confirmed?
     confirmed_at.present?
+  end
+
+  def self.authenticate(email, password)
+    confirmed.
+      find_by(email: email).
+      try(:authenticate, password)
   end
 
 end
