@@ -5,27 +5,29 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.most_recent
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @room = Room.find(params[:id])
   end
 
   # GET /rooms/new
   def new
-    @room = Room.new
+    @room = current_user.rooms.build
   end
 
   # GET /rooms/1/edit
   def edit
+    @room = current_user.rooms.build(parms[:room])
   end
 
   # POST /rooms
   # POST /rooms.json
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.build(room_params)
 
     respond_to do |format|
       if @room.save
@@ -41,6 +43,8 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
+    @room = current_user.rooms.find(params[:id])
+
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
@@ -55,6 +59,7 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    @room = current_user.rooms.find(params[:id])
     @room.destroy
     respond_to do |format|
       format.html { redirect_to rooms_url }

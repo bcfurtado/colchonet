@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  has_many :rooms
+  
   before_create :generate_token
 
   scope :confirmed, where('confirmed_at IS NOT NULL')
