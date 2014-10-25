@@ -1,7 +1,12 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+{<img src='https://snap-ci.com/bcfurtado/colchonet/branch/master/build_image' alt='Build Status' />}[https://snap-ci.com/bcfurtado/colchonet/branch/master]
+
+The fist ruby & rails application developed following the book: 'Ruby on Rails - coloque sua aplicação web nos trilhos'
+
+For make this application run, execute:
+
+  rails s
 
 Things you may want to cover:
 
